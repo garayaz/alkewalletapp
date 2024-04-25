@@ -3,6 +3,8 @@
     <string name="txt_login1">El lugar mas seguro para tu dinero</string>
     <string name="txt_login2">Ya tienes cuenta?</string>
     <string name="txt_boton_login">Crear cuenta nueva</string>
+    <string name="bt_sp_boton_login">Crear cuenta</string>
+    <string name="lp_boton_login">Login</string>
     <string name="txt_nombre">Nombre</string>
     <string name="txt_apellido">Apellido</string>
     <string name="txt_email">Email</string>
@@ -10,10 +12,15 @@
     <string name="txt_confirm_password">Reingresar Password</string>
     <string name="lp_titulo">Logea y empeza a tranferir!</string>
     <string name="lp_olvido_psw">Olvidaste tu password?</string>
-    <string name="lp_crear_cuenta">Crear una nueva cuenta</string>
+    <string name="txt_lp_crear_cuenta">Crear una nueva cuenta</string>
+    <string name="txt_sp_crear_cuenta">Ya tienes una cuenta??</string>
     <string name="sup_titulo">Registrarse y empezar a transferir</string>
     <string name="txt_ingresa_email">Ingrese su Email</string>
     <string name="lp_olvido_contraseña">Olvidaste tu password?</string>
     <string name="txt_ingresa_contraseña">Ingrese su password</string>
+    <string name="txt_sp_nombre">Nombre</string>
+    <string name="sp_txt_reingresar_password">Reingresar password</string>
+    <string name="lbl_sp_reingresar_password">Reingresar password</string>
+    <string name="lbl_sp_apellido">Apellido</string>
 
 </resources>

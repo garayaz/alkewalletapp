@@ -6,9 +6,19 @@
     </style>
 
     <style name="Theme.AlkeWallet" parent="Base.Theme.AlkeWallet" />
+
+
     <style name="boton_celeste">
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/azul</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/jua</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
+    <style name="boton_azul">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/azul_texto</item>
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/jua</item>
         <item name="cornerRadius">10dp</item>
