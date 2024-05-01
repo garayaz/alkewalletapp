@@ -10,7 +10,7 @@ class LoginPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_page)
 
-        val signup = findViewById<TextView>(R.id.lp_crear_cuenta_nueva)
+        val signup = findViewById<TextView>(R.id.lp_crear_cuenta)
         signup.setOnClickListener {
             val abrirPantallaLogin = Intent(this, SignupPage::class.java)
             abrirPantallaLogin.putExtra("nombre", "Gonzalo")

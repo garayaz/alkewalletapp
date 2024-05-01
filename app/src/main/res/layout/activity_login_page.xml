@@ -9,9 +9,9 @@
 
     <TextView
         android:id="@+id/lp_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/jua"
         android:text="@string/lp_titulo"
@@ -29,7 +29,7 @@
         android:layout_marginTop="96dp"
         android:fontFamily="@font/jua"
         android:text="@string/txt_email"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="@+id/lp_title"
@@ -42,6 +42,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:textColorHint="@color/gris"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -66,7 +67,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/jua"
         android:text="@string/txt_password"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/lp_enter_email"
@@ -76,15 +77,15 @@
         android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:textColorHint="@color/gris"
+        app:hintEnabled="false"
         app:counterTextColor="@color/gris"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/contrasena"
         app:layout_constraintTop_toBottomOf="@+id/contrasena">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -119,7 +120,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="104dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/azul"
         android:text="@string/lp_boton_login"
@@ -132,9 +133,17 @@
         android:id="@+id/lp_crear_cuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crear cuenta"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="625dp" />
+        android:fontFamily="@font/jua"
+        android:text="@string/txt_lp_crear_cuenta"
+        android:textAlignment="center"
+        android:textColor="@color/azul"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lp_button"
+        app:layout_constraintVertical_bias="0.333" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,11 @@
 package araya.gonzalo.alkewallwt
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 
-class LoginSignupPageActivity : AppCompatActivity() {
+class HomePageEmptyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_signup_page)
-
-
-
+        setContentView(R.layout.activity_home_page_empty)
     }
 }
