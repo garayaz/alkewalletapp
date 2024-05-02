@@ -13,7 +13,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.splashscreenactivity)
 
 
-
+        /**
         /* Abiendo la pantalla con un click */
 
         //Se declara la imagen como una variable
@@ -26,21 +26,21 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(abrirPantallaLogin)
         }
 
-        /**
+
          * Abiendo la pantalla con un timer*/
-/*
+
         var task: TimerTask? = object : TimerTask() {
             override fun run() {
                 val abrirPantallaLogin = Intent(baseContext, LoginSignupPageActivity::class.java)
-                abrirPantallaLogin.putExtra("nombre", "Gonzalo")
-                abrirPantallaLogin.putExtra("apellido", "Araya")
-                abrirPantallaLogin.putExtra("acepto_tyC", false)
+              //  abrirPantallaLogin.putExtra("nombre", "Gonzalo")
+              //  abrirPantallaLogin.putExtra("apellido", "Araya")
+              //  abrirPantallaLogin.putExtra("acepto_tyC", false)
                 startActivity(abrirPantallaLogin)
-                finish()
+              //  finish()
             }
         }
 
         val timer = Timer()
-        timer.schedule(task, 3000)*/
+        timer.schedule(task, 3000)
     }
 }

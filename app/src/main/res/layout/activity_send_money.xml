@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".RequestMoneyActivity">
+    tools:context=".SendMoneyActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -27,7 +27,7 @@
         android:fontFamily="@font/jua"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:text="@string/txt_ingresar_dinero"
+        android:text="@string/txt_enviar_dinero"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,13 +37,13 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/contact_info" />
+        app:srcCompat="@drawable/contact_info2" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -54,7 +54,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:srcCompat="@drawable/payment_amount" />
+        app:srcCompat="@drawable/payment_amount2" />
 
     <TextView
         android:id="@+id/textView5"
@@ -91,19 +91,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
-        android:id="@+id/hp_button_azul"
-        style="@style/boton_azul"
+        android:id="@+id/hp_button_verde"
+        style="@style/boton_verde"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="40dp"
+        app:icon="@drawable/send_icon"
         app:iconGravity="textStart"
-        app:icon="@drawable/request_icon"
-        android:text="@string/txt_ingresar_dinero"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
+        app:iconTint="@android:color/black"
+        android:text="@string/txt_enviar_dinero"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

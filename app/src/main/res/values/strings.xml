@@ -32,4 +32,10 @@
     <string name="txt_cant_a_ingresar">Cantidad a ingresar</string>
     <string name="txt_notas_de_transf">Notas de transferencia</string>
     <string name="txt_agregar_notas">Agregar notas de transferencia (opcional)</string>
+    <string name="txt_mi_informacion">Mi información</string>
+    <string name="txt_mis_tarjetas">Mis tarjetas</string>
+    <string name="txt_Opciones">Opciones</string>
+    <string name="txt_Centro_de_ayuda">Centro de ayuda</string>
+    <string name="txt_Mi_perfil">Mi perfil</string>
+    <string name="txt_amanda_alkemi">Amanda Alkemi</string>
 </resources>

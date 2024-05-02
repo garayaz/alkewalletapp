@@ -13,9 +13,6 @@ class LoginPage : AppCompatActivity() {
         val signup = findViewById<TextView>(R.id.lp_crear_cuenta)
         signup.setOnClickListener {
             val abrirPantallaLogin = Intent(this, SignupPage::class.java)
-            abrirPantallaLogin.putExtra("nombre", "Gonzalo")
-            abrirPantallaLogin.putExtra("apellido", "Araya")
-            abrirPantallaLogin.putExtra("acepto_tyC", false)
             startActivity(abrirPantallaLogin)
         }
 
