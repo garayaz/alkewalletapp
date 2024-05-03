@@ -53,7 +53,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/borde_campo"
             android:fontFamily="@font/jua"
             android:hint="@string/txt_ingresa_email"
             android:inputType="textEmailAddress"
@@ -91,7 +91,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/borde_campo"
             android:fontFamily="@font/jua"
             android:hint="@string/txt_ingresa_contraseña"
             android:inputType="textPassword"

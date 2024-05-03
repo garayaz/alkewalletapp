@@ -39,4 +39,6 @@
         <item name="fontFamily">@font/jua</item>
         <item name="cornerRadius">10dp</item>
     </style>
+
+
 </resources>

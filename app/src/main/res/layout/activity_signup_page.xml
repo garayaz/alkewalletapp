@@ -88,6 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/jua"
+                    android:background="@drawable/borde_campo"
                     android:hint="@string/txt_ingresar_nombre" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,6 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/jua"
+                    android:background="@drawable/borde_campo"
                     android:hint="@string/txt_ingresar_apellido" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,6 +137,7 @@
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:background="@drawable/borde_campo"
                     android:hint="@string/txt_ingresa_email" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,6 +161,7 @@
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:background="@drawable/borde_campo"
                     android:hint="@string/txt_ingresa_contraseña"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -182,6 +186,7 @@
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:background="@drawable/borde_campo"
                     android:hint="@string/sp_txt_reingresar_password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
