@@ -7,68 +7,37 @@
     android:background="@drawable/lpbackground"
     tools:context=".SignupPage">
 
-      <TextView
-          android:id="@+id/lp_title"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="30dp"
-          android:layout_marginTop="76dp"
-          android:layout_marginEnd="10dp"
-          android:fontFamily="@font/jua"
-          android:text="@string/sup_titulo"
-          android:textSize="32sp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Button
-        android:id="@+id/lsp_button"
-        style="@style/boton_azul"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/lp_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/bt_sp_boton_login"
-        app:layout_constraintBottom_toTopOf="@+id/sp_ya_tienes_cuenta"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/jua"
+        android:text="@string/sup_titulo"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-          <TextView
-              android:id="@+id/sp_ya_tienes_cuenta"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
-              android:fontFamily="@font/jua"
-              android:text="@string/sp_tienes_una_cuenta"
-              android:textAlignment="center"
-              android:textColor="@color/azul"
-              android:textSize="20sp"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toBottomOf="@+id/lsp_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="389dp"
-        android:layout_height="497dp"
-        app:layout_constraintBottom_toTopOf="@+id/lsp_button"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lp_title">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="50dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/lbl_sp_nombre"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="5dp"
@@ -87,8 +56,8 @@
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:fontFamily="@font/jua"
                     android:background="@drawable/borde_campo"
+                    android:fontFamily="@font/jua"
                     android:hint="@string/txt_ingresar_nombre" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,8 +81,8 @@
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:fontFamily="@font/jua"
                     android:background="@drawable/borde_campo"
+                    android:fontFamily="@font/jua"
                     android:hint="@string/txt_ingresar_apellido" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -192,6 +161,29 @@
                     android:hint="@string/sp_txt_reingresar_password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/lsp_button"
+                style="@style/boton_azul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/bt_sp_boton_login" />
+
+            <TextView
+                android:id="@+id/sp_ya_tienes_cuenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/jua"
+                android:text="@string/sp_tienes_una_cuenta"
+                android:textAlignment="center"
+                android:textColor="@color/azul"
+                android:textSize="20sp" />
+
         </LinearLayout>
 
 
