@@ -30,6 +30,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    // Activando ViewBinding para no usar findViewById
+
+    viewBinding {
+        enable = true
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }

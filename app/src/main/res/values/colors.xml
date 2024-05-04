@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    background: ;
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="celeste">#84BFEE</color>
@@ -8,4 +9,5 @@
     <color name="verde">#72DB31</color>
     <color name="plomo">#F3F4F5</color>
     <color name="gris">#7C7B7B</color>
+    <color name="background_profile_page">#F3F4F5</color>
 </resources>
