@@ -3,7 +3,6 @@ package araya.gonzalo.alkewallwt.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import araya.gonzalo.alkewallwt.HomePageActivity
 import araya.gonzalo.alkewallwt.databinding.ActivityLoginPageBinding
 
 class LoginPage : AppCompatActivity() {

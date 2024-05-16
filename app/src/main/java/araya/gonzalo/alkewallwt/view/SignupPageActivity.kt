@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import araya.gonzalo.alkewallwt.HomePageEmptyActivity
 import araya.gonzalo.alkewallwt.R
 import araya.gonzalo.alkewallwt.databinding.ActivitySignupPageBinding
 
