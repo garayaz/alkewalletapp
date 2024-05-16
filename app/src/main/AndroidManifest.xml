@@ -17,7 +17,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignupPage"
+            android:name=".view.SignupPage"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -29,7 +29,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginPage"
+            android:name=".view.LoginPage"
             android:exported="false" />
         <activity
             android:name=".ProfilePageActivity"
@@ -40,11 +40,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginSignupPageActivity"
+            android:name=".view.LoginSignupPageActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".view.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
