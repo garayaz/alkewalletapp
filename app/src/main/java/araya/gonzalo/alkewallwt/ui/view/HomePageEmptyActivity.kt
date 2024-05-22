@@ -1,4 +1,4 @@
-package araya.gonzalo.alkewallwt.view
+package araya.gonzalo.alkewallwt.ui.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

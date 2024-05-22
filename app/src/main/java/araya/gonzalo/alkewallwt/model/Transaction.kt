@@ -1,11 +1,11 @@
 package araya.gonzalo.alkewallwt.model
 
+import androidx.annotation.DrawableRes
+
 data class Transaction(
-    val amount: Long,
-    val concept: String,
+    val photo: Int,
+    val userName: String,
     val date: String,
-    val type: String,
-    val accountID: Long,
-    val userID: Long,
-    val toAccountID: Long
+    val type: Int, // 0 - income, 1 - expense
+    val amount: Long
 )

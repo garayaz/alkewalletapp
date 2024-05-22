@@ -1,17 +1,15 @@
-package araya.gonzalo.alkewallwt.view
+package araya.gonzalo.alkewallwt.ui.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
-import araya.gonzalo.alkewallwt.databinding.ActivitySendMoneyBinding
+import araya.gonzalo.alkewallwt.databinding.ActivityRequestMoneyBinding
 
-class SendMoneyActivity : AppCompatActivity() {
-    lateinit var binding:ActivitySendMoneyBinding
+class RequestMoneyActivity : AppCompatActivity() {
+    lateinit var binding : ActivityRequestMoneyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySendMoneyBinding.inflate(layoutInflater)
+        binding = ActivityRequestMoneyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //Se hace un Back desde la flecha superior izquierda para volver a la pagina anterior

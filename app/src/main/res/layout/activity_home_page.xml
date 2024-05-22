@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.HomePageActivity">
+    android:layout_height="wrap_content"
+    tools:context=".ui.view.HomePageActivity"
+    android:id="@+id/home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -23,7 +24,7 @@
             android:layout_gravity="center_horizontal|end"
             android:layout_marginTop="28dp"
             android:paddingTop="10dp"
-            android:paddingEnd="70dp"
+            android:paddingEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -131,13 +132,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="199dp" />
+            app:layout_constraintGuide_end="212dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/llhp2"
-        android:layout_width="409dp"
-        android:layout_height="469dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,47 +146,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
-        <ImageView
+        <TextView
             android:id="@+id/img_hp_ult_transac"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:text="@string/ultimas_transacciones"
+            android:fontFamily="@font/jua"
+            android:textStyle="bold"
+            android:textAlignment="viewStart"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="2dp"
             android:layout_marginTop="10dp"
             app:srcCompat="@drawable/last_transactions" />
 
-        <ImageView
-            android:id="@+id/img_hp_linea1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/user1" />
 
-        <ImageView
-            android:id="@+id/img_hp_linea2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/user2" />
 
-        <ImageView
-            android:id="@+id/img_hp_linea3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/user3" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transactions"
+                android:layout_width="wrap_content"
+                android:layout_height="520dp"
+                tools:listitem="@layout/transactions_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-        <ImageView
-            android:id="@+id/img_hp_linea4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/user4" />
 
-        <ImageView
-            android:id="@+id/img_hp_linea5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/user5" />
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

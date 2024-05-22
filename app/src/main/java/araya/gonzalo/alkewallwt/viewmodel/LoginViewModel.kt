@@ -6,34 +6,28 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/** Este es el encargado de hacer el login a la app **/
+/**
+ * View model encargado de hacer el Login de la app
+ */
 class LoginViewModel : ViewModel() {
-
+    //Variable LiveData que va a informar a la vista el login
     val loginResultLiveData = MutableLiveData<Boolean>()
 
-    fun hacerlogin(email: String, password: String) {
+    /**
+     * funcion que implementa una corrrutina para llamar a la Api
+     */
+    fun hacerLogin(email: String, contrasena: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                //val response = ApiClient.apiService.login(username, password)
-                //if (response.isSuccessful) {
-                //    val jsonResponse = response.body()
-                //   if (jsonResponse != null) {
-                //       val status = jsonResponse.getString("status")
-                //       val message = jsonResponse.getString("message")
-                //      loginResultLiveData.postValue("Status: $status\nMessage: $message")
-                //  } else {
-                if (email == "garayaz@gmail.com" && password == "1234") {
+                //Aca nosotros vamos a llamar a la API
+                if (email == "test@test.cl" && contrasena == "1234") {
                     loginResultLiveData.postValue(true)
                 } else {
-
+                    loginResultLiveData.postValue(false)
                 }
-
-                //  }
-                // } else {
-                //    loginResultLiveData.postValue("Error: ${response.message()}")
-                //  }
             } catch (e: Exception) {
-                // loginResultLiveData.postValue("Error: ${e.message}")
+                //aqui si hay un error se ejecuta este codigo
+                loginResultLiveData.postValue(false)
             }
         }
     }
