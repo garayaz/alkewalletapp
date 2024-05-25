@@ -9,7 +9,8 @@ import araya.gonzalo.alkewallwt.databinding.TransactionsItemBinding
 import araya.gonzalo.alkewallwt.model.Transaction
 import android.content.res.Resources
 
-
+// El adapter se usa para cargar los datos en la vista, en este caso a la TransactionsItemBinding,
+// que es el reciclerView
 class TransactionsViewAdapter :
     RecyclerView.Adapter<TransactionsViewAdapter.TransactionViewHolder>() {
     lateinit var onItemClickistener: (Transaction) -> Unit
@@ -20,22 +21,26 @@ class TransactionsViewAdapter :
             this.notifyDataSetChanged()
         }
 
+
+    // El onCreate, crea la vista y se la pasa al viewHolder
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): TransactionViewHolder {
-        // es para crear el Holder y recibe por parametro el binding
+
         var bindingItem =
             TransactionsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TransactionViewHolder(bindingItem)
 
     }
 
+    // el bind permite cargar los datos en la vista
     override fun onBindViewHolder(
         holder: TransactionViewHolder,
         position: Int
     ) {
         val transaction: Transaction = transactions[position]
+        // se llama la funcion bind del viewHolder y se le pasa la transaccion(datos)
         holder.bind(transaction)
 
     }
@@ -44,6 +49,8 @@ class TransactionsViewAdapter :
         return transactions.size
     }
 
+
+   // Esta clase se usa para parar los datos a la vista
     inner class TransactionViewHolder(
         private val bindingItem:
         TransactionsItemBinding
@@ -71,6 +78,7 @@ class TransactionsViewAdapter :
             val resourceId =
                 Resources.getSystem().getIdentifier(photox, "drawable", packageName)
             bindingItem.imageItem.setImageResource(resourceId)
+            //Picasso.get().load(transaction.imgUrl).into(bindingItem.imageItem)
             // binding.imageItem.setImageDrawable(resourceId)
 //            bindingItem.root.setOnClickListener() {
 //                onItemClickistener(transaction)

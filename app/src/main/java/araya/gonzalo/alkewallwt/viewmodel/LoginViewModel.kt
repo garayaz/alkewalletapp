@@ -10,11 +10,13 @@ import kotlinx.coroutines.launch
  * View model encargado de hacer el Login de la app
  */
 class LoginViewModel : ViewModel() {
-    //Variable LiveData que va a informar a la vista el login
+    // este viewModel deberia conectarse a una api para hacer el login, enviando
+    // el email y la contrasena
+    //Variable LiveData que va a informar a la vista el login, entrega un resultado booleano
     val loginResultLiveData = MutableLiveData<Boolean>()
 
     /**
-     * funcion que implementa una corrrutina para llamar a la Api
+     * funcion que implementa una corrrutina para llamar en el futuro a la Api
      */
     fun hacerLogin(email: String, contrasena: String) {
         CoroutineScope(Dispatchers.IO).launch {

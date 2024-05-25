@@ -22,10 +22,10 @@ class HomePageActivity : AppCompatActivity() {
         val homeViewModel: HomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         // se instancia al adaptador, por eso es adaptador()
         var adapterLg = TransactionsViewAdapter()
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-        // se instancia el homeviewmodel
         // ahora le paso el adapter al recyclerView
         binding.transactions.adapter = adapterLg
+
+        // se instancia el homeviewmodel y se define el observador y que es lo que observara
         homeViewModel.transactionsLV.observe(this, Observer {
             binding.transactions.layoutManager = LinearLayoutManager(this)
             adapterLg.transactions = it // it es MutableList<Languaje>, se ve en la linea 27
@@ -65,12 +65,12 @@ class HomePageActivity : AppCompatActivity() {
         }
 
         //Se define OnClick para que al dar click sobre la foto del usuario, salte a la su perfil
-        // val foto = findViewById<ImageView>(R.id.img_hpe_foto)
-        // val foto = binding.imgHpeFoto
-        // foto.setOnClickListener {
-        //     val abrirPerfil = Intent(baseContext, ProfilePageActivity::class.java)
-        //     startActivity(abrirPerfil)
-        // }
+        //val foto = findViewById<ImageView>(R.id.img_hpe_foto)
+        val foto = binding.imgHpeFoto
+        foto.setOnClickListener {
+             val abrirPerfil = Intent(baseContext, ProfilePageActivity::class.java)
+             startActivity(abrirPerfil)
+         }
         // me creo una variabla para traer o conectar el viewModel se usa el ViewModelProvider que son los proveedores
         // o subscriptores que indican quienes estaran en este hilo y se le pasa a quien va a tener el observador a cargo,
         // te estoy pasando el proveedor MainViewModel
@@ -85,7 +85,7 @@ class HomePageActivity : AppCompatActivity() {
 
 
         // el languagesLV es el que tiene el observer que indica si hay cambios en la lista, le digo quien es
-        // el que estara observando, le diho "this" esta vista (MainActivity) usando lambda llamo a un
+        // el que estara observando, le digo "this" esta vista (MainActivity) usando lambda llamo a un
         // observador dentro del otro, el de afuera es para comunicarse y el segundo para ejecutar alguna logica
         // mediante el obsrvador veo si hay cambios en la data
 

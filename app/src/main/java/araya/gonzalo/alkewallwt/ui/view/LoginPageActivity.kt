@@ -23,22 +23,15 @@ class LoginPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//  vamos a configurar viewmodel
-        // viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        //Se define OnClick para que al dar click sobre el texto "Crear una nueva cuenta", salte a la activity Signup Page
-        //val signup = findViewById<TextView>(R.id.lp_crear_cuenta)
 
-        //Vamos a configurar el ViewModel
+        //Vamos a configurar el ViewModel que conecta a la vista
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        //si el dato es distinto de null lo voy a prerrellenar
-
-        //Configurando en onClick
+        //Configurando en onClick para el boton Login
         binding.lpButton.setOnClickListener {
             //Vamos a rescartar la informacion que ingreso el usuario
             var correoIngresado = binding.lpEnterEmail.text.toString()
             var passwordIngresado = binding.lpEnterContrasena.text.toString()
-            //vamos a guardar el correo en los sharedPreferences
 
             viewModel.hacerLogin(correoIngresado, passwordIngresado)
         }

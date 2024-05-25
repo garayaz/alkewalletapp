@@ -11,7 +11,6 @@ class HomePageEmptyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomePageEmptyBinding.inflate(layoutInflater)
         setContentView(binding.root)
-      //  setContentView(R.layout.activity_home_page_empty)
 
         //Se define OnClick para que al dar click sobre el boton Login, salte a la activity Home Page
         val botonverde = binding.hpButtonVerde

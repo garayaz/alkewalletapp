@@ -7,14 +7,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RegisterViewModel: ViewModel() {
+    //Este viewModel deberia conectarse con una api para hacer el registro del nuevo usuario
 
     val RegistrationValid = MutableLiveData<Boolean>()
 
-    fun hacerRegistro(firstName: String, lastName: String, email: String, password: String) {
+//Se hacen las validaciones de los datos ingresados por el usuario en la funcion "hacerRegistro"
+    fun hacerRegistro(firstName: String, lastName: String, email: String, password: String, repassword: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 //Llamar a la API
-                if (firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+                if ((firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) && password == repassword) {
                     RegistrationValid.postValue(true)
 
                 } else {

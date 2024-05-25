@@ -1,4 +1,4 @@
-package araya.gonzalo.alkewallwt.ui
+package araya.gonzalo.alkewallwt.ui.view
 
 class LoginPageActivityResp {
 /**

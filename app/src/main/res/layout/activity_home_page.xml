@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.view.HomePageActivity"
+    android:usesCleartextTraffic="true"
     android:id="@+id/home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,12 +139,13 @@
 
     <LinearLayout
         android:id="@+id/llhp2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
         android:background="@color/white"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
@@ -150,25 +153,21 @@
             android:id="@+id/img_hp_ult_transac"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ultimas_transacciones"
-            android:fontFamily="@font/jua"
-            android:textStyle="bold"
-            android:textAlignment="viewStart"
             android:layout_marginStart="10dp"
-            android:layout_marginBottom="2dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/jua"
+            android:text="@string/ultimas_transacciones"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"
             app:srcCompat="@drawable/last_transactions" />
 
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/transactions"
-                android:layout_width="wrap_content"
-                android:layout_height="520dp"
-                tools:listitem="@layout/transactions_item"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/transactions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/transactions_item" />
     </LinearLayout>
 
 

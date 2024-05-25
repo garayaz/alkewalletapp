@@ -7,26 +7,28 @@ import araya.gonzalo.alkewallwt.R
 import araya.gonzalo.alkewallwt.model.Transaction
 
 class HomeViewModel: ViewModel() {
-
-
+// este viewmodel deberia traer las transacciones desde algun repositorio externo
+// se define una variable Mutable, es decir que se puede modificar
     private var _transactionList = MutableLiveData<MutableList<Transaction>>()
-// mutable livedata es un tipo de livedata que se puede modificar y es el que se comunica con el mesero(observador)
-    // mutablelist es una lista que se puede modificar
-    // vamos a pasar los datos del livedata (_languageList) a la nueva variable que no es mutable
     // LiveData<MutableList<Language>> esta es la que se conecta con el observador, el mesero
     // languagesLV es el que se va a invocar desde el MainActivity, el lleva la data
+
+    // se declara la variable transactionsLV que es un LiveData<MutableList<Transaction>>,
+    // es decir es un dato observable y que comunicará a la vista los cambios que ocurran
     val transactionsLV: LiveData<MutableList<Transaction>>
         get() = _transactionList
-    // al llamar esta funcion, esto es lo primero que se ejecuta, es decir, se le pasan los datos a
-    // _languageList y esa se le pasa despues al mesero que es languagesLV
 
+    // al llamar esta funcion (fetchTransactions()), esto es lo primero que se ejecuta, es decir,
+    // se le pasan los datos a _languageList y esa se le pasa despues al "mesero" que es
+    // transactionsLV, que escucha los cambios en la data
     init {
         fetchTransactions()
     }
 
-    //  VIEWMODEL "TIENE" QUE IR ACOMPAÑADO DE UN LIVEDATA, ASI COMO UN ADAPTADOR NO PUEDE EXISTIR SIN UN VIEWHOLDER
+    //  VIEWMODEL "TIENE" QUE IR ACOMPAÑADO DE UN LIVEDATA, ASI COMO UN ADAPTADOR NO PUEDE
+    //  EXISTIR SIN UN VIEWHOLDER
     // vamos a simular que desde el viewmodel nos conectamos a una fuente de datos
-    //  diciendo traeme los lenguajes, a traves de la siguiente funcion, esto se deberia hacer
+    //  diciendo traeme las transacciones, a traves de la siguiente funcion, esto se deberia hacer
     // con patron repository
     fun fetchTransactions() {
         val trList = mutableListOf(
