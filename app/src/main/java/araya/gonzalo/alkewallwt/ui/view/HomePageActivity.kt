@@ -8,10 +8,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import araya.gonzalo.alkewallwt.databinding.ActivityHomePageBinding
 import araya.gonzalo.alkewallwt.domain.TransactionsUseCase
+import araya.gonzalo.alkewallwt.model.DataObject
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import araya.gonzalo.alkewallwt.model.TransactionsResponse
 import araya.gonzalo.alkewallwt.model.network.RetrofitClass
@@ -36,11 +38,12 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(binding.root)
         Log.i("AW LOGGED USER", loggedUser.toString())
         // lleno los datos del encabezado del Home
-        binding.hpHola.text = "Hola, ${loggedUser?.first_name}!"
+        binding.hpHola.text = "Hola, ${loggedUser.toString()}!"
 
         binding = ActivityHomePageBinding.inflate(layoutInflater)
         //setContentView(R.layout.activity_main)
         setContentView(binding.root)
+        Log.i("THP - val apiService = retrofitobj.create", binding.toString())
         val apiService = retrofitobj.create(TransactionsService::class.java)
         // a traves del parametro apiService conecto el repositorio con su caa anterior
         val repository = TransactionsImp(apiService)
@@ -48,18 +51,22 @@ class HomePageActivity : AppCompatActivity() {
         val usecase = TransactionsUseCase(repository)
         // view model no deja instanciar como los anteriores
         var adapterLg = TransactionsViewAdapter()
+        Log.i("HPA: ", adapterLg.toString())
         binding.transactions.adapter = adapterLg
         val viewModelFactory = ViewModelFactory(usecase)
         val viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
         viewModel.transactionsLV.observe(this) {
 
-            Log.i("Transactions AW", it.toString())
+            Log.i("HPA: ", it.toString())
             binding.transactions.layoutManager = LinearLayoutManager(this)
-            val gson = Gson()
-            val response = gson.fromJson(it.toString(), TransactionsResponse::class.java)
-            val dataArray = response.data
-            Log.i("Transactions AW data: ", dataArray.toString())
-            adapterLg.transactions = dataArray //
+            Log.i("HPA: ", "despues de bindin.transactions")
+      //      val gson = Gson()
+        //    Log.i("HPA: gson", gson.toString())
+         //   val response = gson.fromJson(it.data, DataObject::class.java)
+            Log.i("HPA: response", it.data.toString())
+       //     val dataArray = response.data
+       //     Log.i("HPA: dataArray", dataArray.toString())
+            adapterLg.transactions = it.data //
             adapterLg.onItemClickistener = { transaction ->
                 // se usa it para lenguaje porque asi lo indica el onClickListener, ver en gris
                 // despues del parentesis

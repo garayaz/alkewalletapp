@@ -24,5 +24,6 @@ class RetrofitClass {
             .baseUrl("http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/")
             .addConverterFactory(GsonConverterFactory.create()) //mapea el objeto json a un objeto de kotlin
             .build()
+
     }
 }

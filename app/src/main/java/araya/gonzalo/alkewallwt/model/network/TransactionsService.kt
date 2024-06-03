@@ -1,5 +1,6 @@
 package araya.gonzalo.alkewallwt.model.network
 
+import araya.gonzalo.alkewallwt.model.DataObject
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import araya.gonzalo.alkewallwt.model.TransactionsResponse
 import araya.gonzalo.alkewallwt.model.User
@@ -11,7 +12,7 @@ interface TransactionsService {
     @GET("transactions")
     suspend fun getUserTrans(
         @Header("Authorization") token: String
-    ): MutableList<TransactionsResponse>
+    ): DataObject
 
-
+// ): MutableList<TransactionsResponse>
 }

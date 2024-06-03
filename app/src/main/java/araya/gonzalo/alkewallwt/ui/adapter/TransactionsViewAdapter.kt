@@ -8,6 +8,7 @@ import araya.gonzalo.alkewallwt.R
 import araya.gonzalo.alkewallwt.databinding.TransactionsItemBinding
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import android.content.res.Resources
+import android.util.Log
 
 // El adapter se usa para cargar los datos en la vista, en este caso a la TransactionsItemBinding,
 // que es el reciclerView
@@ -50,46 +51,56 @@ import android.content.res.Resources
     }
 
 
-   // Esta clase se usa para parar los datos a la vista
+   // Esta clase se usa para pasar los datos a la vista
     inner class TransactionViewHolder(
         private val bindingItem:
         TransactionsItemBinding
     ) : RecyclerView.ViewHolder(bindingItem.root) {
-        fun bind(transaction: TransactionAW) {
-      //      bindingItem.nameItem.text = transaction.userName
-            bindingItem.dateItem.text = transaction.date
-            val qtt = transaction.amount.toString()
-            val formattedString = qtt.reversed().chunked(3).joinToString(".").reversed()
-            var raya = " $"
-            if (transaction.type == "topup") {
-                bindingItem.arrowItem.setImageResource(R.drawable.deposit2_icon)
-            } else {
-                bindingItem.arrowItem.setImageResource(R.drawable.payment_icon)
-                raya = "-$"
-            }
-            bindingItem.amountItem.text = buildString {
-                append(raya)
-                append(formattedString)
-            }
-            // Load and display profile image
-            // ...
-            val packageName = bindingItem.root.context.packageName
-            val photox = transaction.userId
-            val photoY = photox.toString()
-            val resourceId =
-                Resources.getSystem().getIdentifier(photoY, "drawable", packageName)
-            bindingItem.imageItem.setImageResource(resourceId)
-            //Picasso.get().load(transaction.imgUrl).into(bindingItem.imageItem)
-            // binding.imageItem.setImageDrawable(resourceId)
+       fun bind(transaction: TransactionAW) {
+           bindingItem.nameItem.text = transaction.toAccountId.toString()
+           Log.i("VH userId", transaction.toAccountId.toString())
+           //      bindingItem.nameItem.text = transaction.userName
+           bindingItem.dateItem.text = transaction.date
+           val qtt = transaction.amount.toString()
+           val formattedString = qtt.reversed().chunked(3).joinToString(".").reversed()
+           var raya = " $"
+           Log.i("VH type", transaction.type.toString())
+           if (transaction.type == "topup") {
+               bindingItem.arrowItem.setImageResource(R.drawable.deposit2_icon)
+           } else {
+               bindingItem.arrowItem.setImageResource(R.drawable.payment_icon)
+               raya = "-$"
+           }
+           Log.i("VH amount", transaction.amount.toString())
+           bindingItem.amountItem.text = buildString {
+               append(raya)
+               append(formattedString)
+           }
+           // Load and display profile image
+           // ...
+           val packageName = bindingItem.root.context.packageName
+           val photox = getPhotoNum(transaction.userId)
+           val photoY = photox.toString()
+          // val resourceId = Resources.getSystem().getIdentifier(photoY, "drawable", packageName)
+         //  Log.i("VH photo", resourceId.toString())
+          // bindingItem.imageItem.setImageResource(resourceId)
+           //Picasso.get().load(transaction.imgUrl).into(bindingItem.imageItem)
+           // binding.imageItem.setImageDrawable(resourceId)
 //            bindingItem.root.setOnClickListener() {
 //                onItemClickistener(transaction)
 //            }
+       }
+
+   }
+    fun getPhotoNum(input: Int?): Int {
+        require(input in 1000..9999) { "El número debe tener 4 dígitos" }
+        if (input != null) {
+            val x = input % 7
+            return x
+        } else {
+            return 1
         }
 
-    }
-    fun getPhotoNum(input: Int): Int {
-        require(input in 1000..9999) { "El número debe tener 4 dígitos" }
-        return input % 7
     }
 
     // Load and display profile image

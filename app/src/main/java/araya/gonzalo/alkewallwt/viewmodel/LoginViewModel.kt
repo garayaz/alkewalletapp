@@ -78,11 +78,6 @@ class LoginViewModel : ViewModel() {
 
 
                 })
-//                if (email == "test@test.cl" && contrasena == "1234") {
-//                    loginResultLiveData.postValue(true)
-//                } else {
-//                    loginResultLiveData.postValue(false)
-//                }
             } catch (e: Exception) {
                 //aqui si hay un error se ejecuta este codigo
                 tokenResultLiveData.postValue(null)

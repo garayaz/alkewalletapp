@@ -2,6 +2,7 @@ package araya.gonzalo.alkewallwt.model.repository
 
 import android.util.Log
 import android.view.SurfaceControl
+import araya.gonzalo.alkewallwt.model.DataObject
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import araya.gonzalo.alkewallwt.model.TransactionsResponse
 import araya.gonzalo.alkewallwt.model.network.TransactionsApiClient
@@ -9,13 +10,16 @@ import araya.gonzalo.alkewallwt.model.network.TransactionsService
 import araya.gonzalo.alkewallwt.viewmodel.AlkeWalletApp.Companion.token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Call
 
 class TransactionsImp(private var apiservice: TransactionsService): TransactionsRepository {
     val tokenpass = "Bearer $token"
-    override suspend fun fetchTransactions(): MutableList<TransactionsResponse> {
+    override suspend fun fetchTransactions(): DataObject {
         return withContext(Dispatchers.IO){
+            Log.i("IMP - fetchTransactions token:", tokenpass.toString())
             val response = apiservice.getUserTrans(token=tokenpass) // esta es una funcion lambda por lo
             // que se requiere devolver un valor ACA ESTA el ERROR
+
             response
         }
     }
