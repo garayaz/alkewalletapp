@@ -41,13 +41,13 @@ class SignupPage : AppCompatActivity() {
             val repassword = binding.spInputRepassword.text.toString().trim()
             /*val password1 = binding.spInputRepassword.text.toString().trim()*/
 // se llama la funcion que hace el registro, pasando los datos del usuario.
-            viewModel.hacerRegistro(firstName, lastName, email, password, repassword)
+            viewModel.userRegister(firstName, lastName, email, password, repassword)
 // RegistrationValid es un LiveData que se define en el ViewModel y que escucha los cambios, es
 // decir cuando cambia de valor a true o false.
             viewModel.RegistrationValid.observe(this) { valid ->
-                // si es true, se salta a la siguiente actividad HomePageEmptyActivity
+                // si es true, se salta a la actividad LoginPage
                 if (valid) {
-                    val intent = Intent(this, HomePageEmptyActivity::class.java)
+                    val intent = Intent(this, LoginPage::class.java)
                     startActivity(intent)
                 } else {
                     // Si es false, se muestra un mensaje de error.

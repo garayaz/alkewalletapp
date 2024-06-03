@@ -56,16 +56,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/dashboardtxt" />
 
-        <ImageView
-            android:id="@+id/img_hp_hola"
+        <TextView
+            android:id="@+id/hp_hola"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="136dp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/jua"
             app:layout_constraintHorizontal_bias="0.006"
             app:layout_constraintStart_toStartOf="@+id/img_hp_inicio"
             app:layout_constraintTop_toBottomOf="@+id/img_hp_inicio"
-            app:srcCompat="@drawable/hiamandatxt" />
+            android:text="Hola, " />
 
         <ImageView
             android:id="@+id/img_hp_balance"
@@ -75,12 +78,12 @@
             android:layout_marginEnd="264dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/img_hp_hola"
-            app:layout_constraintTop_toBottomOf="@+id/img_hp_hola"
+            app:layout_constraintStart_toStartOf="@+id/hp_hola"
+            app:layout_constraintTop_toBottomOf="@+id/hp_hola"
             app:srcCompat="@drawable/totalbalancetxt" />
 
-        <ImageView
-            android:id="@+id/img_hp_total"
+        <TextView
+            android:id="@+id/hp_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -89,7 +92,10 @@
             app:layout_constraintStart_toStartOf="@+id/img_hp_balance"
             app:layout_constraintTop_toBottomOf="@+id/img_hp_balance"
             app:layout_constraintVertical_bias="0.326"
-            app:srcCompat="@drawable/montohome" />
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:fontFamily="@font/jua"
+            android:text="127.00" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

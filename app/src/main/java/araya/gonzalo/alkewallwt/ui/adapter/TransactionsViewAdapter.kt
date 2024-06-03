@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import araya.gonzalo.alkewallwt.R
 import araya.gonzalo.alkewallwt.databinding.TransactionsItemBinding
-import araya.gonzalo.alkewallwt.model.Transaction
+import araya.gonzalo.alkewallwt.model.TransactionAW
 import android.content.res.Resources
 
 // El adapter se usa para cargar los datos en la vista, en este caso a la TransactionsItemBinding,
 // que es el reciclerView
-class TransactionsViewAdapter :
+ class TransactionsViewAdapter :
     RecyclerView.Adapter<TransactionsViewAdapter.TransactionViewHolder>() {
-    lateinit var onItemClickistener: (Transaction) -> Unit
-    var transactions = mutableListOf<Transaction>()
+    lateinit var onItemClickistener: (TransactionAW) -> Unit
+    var transactions = mutableListOf<TransactionAW>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -39,7 +39,7 @@ class TransactionsViewAdapter :
         holder: TransactionViewHolder,
         position: Int
     ) {
-        val transaction: Transaction = transactions[position]
+        val transaction: TransactionAW = transactions[position]
         // se llama la funcion bind del viewHolder y se le pasa la transaccion(datos)
         holder.bind(transaction)
 
@@ -55,13 +55,13 @@ class TransactionsViewAdapter :
         private val bindingItem:
         TransactionsItemBinding
     ) : RecyclerView.ViewHolder(bindingItem.root) {
-        fun bind(transaction: Transaction) {
-            bindingItem.nameItem.text = transaction.userName
+        fun bind(transaction: TransactionAW) {
+      //      bindingItem.nameItem.text = transaction.userName
             bindingItem.dateItem.text = transaction.date
             val qtt = transaction.amount.toString()
             val formattedString = qtt.reversed().chunked(3).joinToString(".").reversed()
             var raya = " $"
-            if (transaction.type == 0) {
+            if (transaction.type == "topup") {
                 bindingItem.arrowItem.setImageResource(R.drawable.deposit2_icon)
             } else {
                 bindingItem.arrowItem.setImageResource(R.drawable.payment_icon)
@@ -74,9 +74,10 @@ class TransactionsViewAdapter :
             // Load and display profile image
             // ...
             val packageName = bindingItem.root.context.packageName
-            val photox = transaction.photo.toString()
+            val photox = transaction.userId
+            val photoY = photox.toString()
             val resourceId =
-                Resources.getSystem().getIdentifier(photox, "drawable", packageName)
+                Resources.getSystem().getIdentifier(photoY, "drawable", packageName)
             bindingItem.imageItem.setImageResource(resourceId)
             //Picasso.get().load(transaction.imgUrl).into(bindingItem.imageItem)
             // binding.imageItem.setImageDrawable(resourceId)
@@ -86,6 +87,11 @@ class TransactionsViewAdapter :
         }
 
     }
+    fun getPhotoNum(input: Int): Int {
+        require(input in 1000..9999) { "El número debe tener 4 dígitos" }
+        return input % 7
+    }
+
     // Load and display profile image
     // ...
 
@@ -99,7 +105,7 @@ class TransactionsViewAdapter :
 //   binding.root.setOnClickListener(){
 //  binding.arrow.setOnClickListener() {
 //    onItemClickistener(transaction)
-//}
+//} */
 
 
 

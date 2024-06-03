@@ -66,6 +66,11 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation ("androidx.room:room-runtime:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
+// Logs de conexion
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // Implementacion Mockito
+
 
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.48")
