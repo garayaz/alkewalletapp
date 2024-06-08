@@ -1,15 +1,22 @@
 package araya.gonzalo.alkewallwt.viewmodel
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import araya.gonzalo.alkewallwt.model.AccountRequest
+import araya.gonzalo.alkewallwt.model.AccountResponse
 import araya.gonzalo.alkewallwt.model.LoginRequest
 import araya.gonzalo.alkewallwt.model.LoginResponse
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import araya.gonzalo.alkewallwt.model.User
+import araya.gonzalo.alkewallwt.model.network.AlkeWalletAccountService
 import araya.gonzalo.alkewallwt.model.network.LoginService
 import araya.gonzalo.alkewallwt.model.network.NewAccountService
 import araya.gonzalo.alkewallwt.model.network.RetrofitClass
 import araya.gonzalo.alkewallwt.model.network.TransactionsService
+import araya.gonzalo.alkewallwt.viewmodel.AlkeWalletApp.Companion.fromRegister
 import araya.gonzalo.alkewallwt.viewmodel.AlkeWalletApp.Companion.token
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +24,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDateTime
 
 /**
  * View model encargado de hacer el Login de la app
@@ -29,8 +37,7 @@ class LoginViewModel : ViewModel() {
     val tokenResultLiveData = MutableLiveData<String?>() // almacena el token devuelto por la API
     val errorResultLiveData = MutableLiveData<String?>() // almacena el error devuelto por la API
     val usuarioLiveData = MutableLiveData<User?>() // almacena el usuario logueado
-    val transactionsLiveData = MutableLiveData<MutableList<TransactionAW>?>() // almacena las
-    // transacciones del usuario logueado
+
     /**
      * funcion que implementa una corrrutina para llamar en el futuro a la Api
      */
@@ -44,7 +51,7 @@ class LoginViewModel : ViewModel() {
                 // eso es lo que responder segun esta definido en la API
                 var callingApi: Call<LoginResponse> =
                 login.doLogin(
-                    // LoginReques es el modelo que vamos a enviar a la API
+                    // LoginRequest es el modelo que vamos a enviar a la API
                     LoginRequest(email, contrasena)
                 )
                 //aca hacemos la llamada al servicio y le pasamos el callback para obtener la
@@ -93,10 +100,15 @@ class LoginViewModel : ViewModel() {
                 val tokenpass = "Bearer $token"
                 val calluser: Call<User> = getUsuario.getUserInfo(tokenpass)
                 calluser.enqueue(object : Callback<User> {
+                    @RequiresApi(Build.VERSION_CODES.O)
                     override fun onResponse(call: Call<User>, response: Response<User>) {
                         if (response.isSuccessful){
                             val usuarioLogin = response.body()
                             usuarioLiveData.postValue(usuarioLogin)
+                            Log.i("USUARIO", "onResponse: ${usuarioLogin?.id}")
+                            if (fromRegister){
+                                newAccountAW(LocalDateTime.now().toString(), 1000000, false, usuarioLogin!!.id)
+                            }
                         }else{
                             usuarioLiveData.postValue(null)
                         }
@@ -109,6 +121,43 @@ class LoginViewModel : ViewModel() {
             } catch (e: Exception) {
                 usuarioLiveData.postValue(null)
             }
+        }
+    }
+
+    fun newAccountAW(    creationDate : String,
+                         money : Int,
+                         isBlocked : Boolean,
+                         userId : Int) {
+    //    CoroutineScope(Dispatchers.IO).launch {
+            try {
+                Log.i("CUENTA CREADA", "UserID: ${userId}")
+                val newAccountValid = MutableLiveData<Boolean>()
+                val tokenpass = "Bearer ${AlkeWalletApp.token}"
+                val createAccount = RetrofitClass.retrofitobj.create(AlkeWalletAccountService::class.java)
+                val createCall = createAccount.newWalletAccount(
+                    tokenpass, AccountRequest(creationDate, money, isBlocked, userId)
+                )
+                //Ahora se llama a la API para hacer el registro
+                createCall.enqueue(object : Callback<AccountResponse> {
+                    override fun onResponse(call: Call<AccountResponse>, response: Response<AccountResponse>) {
+                        if (response.isSuccessful) {
+                            AlkeWalletApp.createdAwAccount = response.body()?.id
+                            Log.i("CUENTA CREADA", "onResponse: ${response.body()?.id}")
+                            newAccountValid.postValue(true)
+                        } else {
+                            newAccountValid.postValue(false)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<AccountResponse>, response: Throwable) {
+                        newAccountValid.postValue(false)
+                    }
+
+
+                })
+
+            } catch (e: Exception) {
+                e.printStackTrace()
         }
     }
 

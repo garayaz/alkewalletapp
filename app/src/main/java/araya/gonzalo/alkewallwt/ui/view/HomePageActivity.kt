@@ -28,6 +28,7 @@ import araya.gonzalo.alkewallwt.viewmodel.HomeViewModel
 import araya.gonzalo.alkewallwt.viewmodel.ViewModelFactory
 import com.google.gson.Gson
 import retrofit2.Response
+import kotlin.math.absoluteValue
 
 class HomePageActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomePageBinding
@@ -38,11 +39,8 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(binding.root)
         Log.i("AW LOGGED USER", loggedUser.toString())
         // lleno los datos del encabezado del Home
-        binding.hpHola.text = "Hola, ${loggedUser.toString()}!"
+        binding.hpHola.text = "Hola, ${loggedUser?.first_name}!"
 
-        binding = ActivityHomePageBinding.inflate(layoutInflater)
-        //setContentView(R.layout.activity_main)
-        setContentView(binding.root)
         Log.i("THP - val apiService = retrofitobj.create", binding.toString())
         val apiService = retrofitobj.create(TransactionsService::class.java)
         // a traves del parametro apiService conecto el repositorio con su caa anterior
@@ -60,12 +58,17 @@ class HomePageActivity : AppCompatActivity() {
             Log.i("HPA: ", it.toString())
             binding.transactions.layoutManager = LinearLayoutManager(this)
             Log.i("HPA: ", "despues de bindin.transactions")
-      //      val gson = Gson()
-        //    Log.i("HPA: gson", gson.toString())
-         //   val response = gson.fromJson(it.data, DataObject::class.java)
+            //      val gson = Gson()
+            //    Log.i("HPA: gson", gson.toString())
+            //   val response = gson.fromJson(it.data, DataObject::class.java)
             Log.i("HPA: response", it.data.toString())
-       //     val dataArray = response.data
-       //     Log.i("HPA: dataArray", dataArray.toString())
+            var totalAmount = 0.0
+
+            for (transaction in it.data) {
+                totalAmount += transaction.amount!!
+            }
+            binding.hpTotal.text = totalAmount.toString()
+                    //     Log.i("HPA: dataArray", dataArray.toString())
             adapterLg.transactions = it.data //
             adapterLg.onItemClickistener = { transaction ->
                 // se usa it para lenguaje porque asi lo indica el onClickListener, ver en gris
@@ -79,7 +82,7 @@ class HomePageActivity : AppCompatActivity() {
                 }
             }
         }
-     //   val homeViewModel: HomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        //   val homeViewModel: HomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 //        var adapterLg = TransactionsViewAdapter()
 //        binding.transactions.adapter = adapterLg
 //        viewModel.transactionsLV.observe(this, Observer
@@ -129,15 +132,29 @@ class HomePageActivity : AppCompatActivity() {
             startActivity(abrirPerfil)
         }
     }
-}
-        //    initAdapter()
-    //*  val homeViewModel: HomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-    // se instancia al adaptador, por eso es adaptador()
-//    var adapterLg = TransactionsViewAdapter()
-    // ahora le paso el adapter al recyclerView
- //   binding.transactions.adapter = adapterLg
 
-    // se instancia el homeviewmodel y se define el observador y que es lo que observara
+    private fun calcBalance(data: MutableList<TransactionAW>, totint: Long): Long {
+    Log.i("HPA: calcBalance", totint.toString())
+        data.forEach {
+            Log.i("HPA: calcBalance", it.amount.toString())
+            // sumar amount de cada transaccion
+            if (it.type == "topup") {
+                totint + it.amount!!
+            } else {
+                totint - it.amount!!
+            }
+        }
+        return totint
+    }
+}
+//    initAdapter()
+//*  val homeViewModel: HomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+// se instancia al adaptador, por eso es adaptador()
+//    var adapterLg = TransactionsViewAdapter()
+// ahora le paso el adapter al recyclerView
+//   binding.transactions.adapter = adapterLg
+
+// se instancia el homeviewmodel y se define el observador y que es lo que observara
 //    homeViewModel.transactionsLV.observe(this, Observer
 //    {
 //        binding.transactions.layoutManager = LinearLayoutManager(this)
@@ -158,11 +175,11 @@ class HomePageActivity : AppCompatActivity() {
 //            }
 //        }
 
-        // initAdapter()
+// initAdapter()
 
 
-    //Se define OnClick para que al dar click sobre el boton Verde, salte a la activity Send Money
-    // val botonverde = findViewById<Button>(R.id.hp_button_verde)
+//Se define OnClick para que al dar click sobre el boton Verde, salte a la activity Send Money
+// val botonverde = findViewById<Button>(R.id.hp_button_verde)
 //    val botonverde = binding.hpButtonVerde
 //    botonverde.setOnClickListener
 //    {

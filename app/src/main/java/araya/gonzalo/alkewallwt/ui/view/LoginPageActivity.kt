@@ -21,6 +21,7 @@ class LoginPage : AppCompatActivity() {
     lateinit var binding: ActivityLoginPageBinding
     lateinit var viewModel: LoginViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginPageBinding.inflate(layoutInflater)

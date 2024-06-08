@@ -15,6 +15,11 @@ class AlkeWalletApp : Application() {
         var token: String? = ""
 
         // ver como guardar el response del login
+        var createdAwAccount: Int? = null
+
+        // variable global para indicar si el usuario se esta logeando inmediatamente
+    // despues del signup
+        var fromRegister : Boolean = false
 
     }
 
@@ -23,5 +28,7 @@ class AlkeWalletApp : Application() {
         super.onCreate()
         loggedUser = null
         token = null
+        createdAwAccount = null
+        fromRegister = false
     }
 }

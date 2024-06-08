@@ -1,29 +1,35 @@
 package araya.gonzalo.alkewallwt.ui.view
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import araya.gonzalo.alkewallwt.R
 import araya.gonzalo.alkewallwt.databinding.ActivitySignupPageBinding
+import araya.gonzalo.alkewallwt.model.AccountRequest
 import araya.gonzalo.alkewallwt.model.User
+import araya.gonzalo.alkewallwt.viewmodel.AlkeWalletApp
+import araya.gonzalo.alkewallwt.viewmodel.AlkeWalletApp.Companion.fromRegister
+import araya.gonzalo.alkewallwt.viewmodel.NewAccountViewModel
 import araya.gonzalo.alkewallwt.viewmodel.RegisterViewModel
+import java.time.LocalDateTime
 
 class SignupPage : AppCompatActivity() {
 
     /** desde esta actividad se crea una nueva cuenta **/
     lateinit var binding: ActivitySignupPageBinding
+
     // se define la variable viewModel, que conecta esta actividad con su ViewModel respectivo, es
     // decir con el "mesero"
     private lateinit var viewModel: RegisterViewModel
 
-    //se declara la variable (objeto) newUser, del tipo User, que contendrá los datos del usuario
-    // que se va a crear
-    lateinit var newUser: User
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupPageBinding.inflate(layoutInflater)
@@ -45,10 +51,16 @@ class SignupPage : AppCompatActivity() {
 // RegistrationValid es un LiveData que se define en el ViewModel y que escucha los cambios, es
 // decir cuando cambia de valor a true o false.
             viewModel.RegistrationValid.observe(this) { valid ->
+
                 // si es true, se salta a la actividad LoginPage
                 if (valid) {
-                    val intent = Intent(this, LoginPage::class.java)
-                    startActivity(intent)
+                    viewModel.fromRegisterResultLiveData.observe(this) { registered ->
+                        if (registered) {
+                            fromRegister = registered
+                        }
+                        val intent = Intent(this, LoginPage::class.java)
+                        startActivity(intent)
+                    }
                 } else {
                     // Si es false, se muestra un mensaje de error.
                     Toast.makeText(this, "Favor ingresar todos los datos", Toast.LENGTH_LONG).show()

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import araya.gonzalo.alkewallwt.model.RegisterRequest
 import araya.gonzalo.alkewallwt.model.RegisterResponse
+import araya.gonzalo.alkewallwt.model.User
 import araya.gonzalo.alkewallwt.model.network.NewAccountService
 import araya.gonzalo.alkewallwt.model.network.RetrofitClass
 import kotlinx.coroutines.CoroutineScope
@@ -17,6 +18,7 @@ class RegisterViewModel : ViewModel() {
     //Este viewModel deberia conectarse con una api para hacer el registro del nuevo usuario
 
     val RegistrationValid = MutableLiveData<Boolean>()
+    val fromRegisterResultLiveData = MutableLiveData<Boolean>() // paso por el registro
 
     //Se hacen las validaciones de los datos ingresados por el usuario en la funcion "hacerRegistro"
     fun userRegister(
@@ -43,23 +45,28 @@ class RegisterViewModel : ViewModel() {
                         ) {
                             if (response.isSuccessful) {
                                 RegistrationValid.postValue(true)
+                                fromRegisterResultLiveData.postValue(true)
                             } else {
                                 RegistrationValid.postValue(false)
+                                fromRegisterResultLiveData.postValue(false)
                             }
 // ACA fqlta algo ver parentesis
                         }
 
                         override fun onFailure(p0: Call<RegisterResponse>, p1: Throwable) {
                             RegistrationValid.postValue(false)
+                            fromRegisterResultLiveData.postValue(false)
                         }
                     })
                 } else {
                     RegistrationValid.postValue(false)
+                    fromRegisterResultLiveData.postValue(false)
                 }
 
             } catch (e: Exception) {
                 //aqui si hay un error se ejecuta este codigo
                 RegistrationValid.postValue(false)
+                fromRegisterResultLiveData.postValue(false)
             }
         }
     }

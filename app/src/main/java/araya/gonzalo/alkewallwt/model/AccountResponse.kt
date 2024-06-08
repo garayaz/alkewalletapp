@@ -1,6 +1,7 @@
 package araya.gonzalo.alkewallwt.model
 
 data class AccountResponse(
+    val id : Int,
     val creationDate : String,
     val money : Double,
     val isBlocked : Boolean,
