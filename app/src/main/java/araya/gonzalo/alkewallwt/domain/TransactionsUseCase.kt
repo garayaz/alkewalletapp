@@ -13,4 +13,9 @@ class TransactionsUseCase(private val repository: TransactionsImp) {
         Log.i("UseCase", "getAllTransactions")
         return repository.fetchTransactions()
     }
+
+    suspend fun getAllTransactionResponse(): Call<TransactionAW> {
+        Log.i("UseCase", "getAllTransactions")
+        return repository.fetchTransactionsResponse()
+    }
 }

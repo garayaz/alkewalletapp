@@ -8,4 +8,6 @@ import retrofit2.Call
 interface TransactionsRepository {
 
     suspend fun fetchTransactions(): DataObject
+    suspend fun fetchTransactionsResponse(): Call<TransactionAW>
+
 }

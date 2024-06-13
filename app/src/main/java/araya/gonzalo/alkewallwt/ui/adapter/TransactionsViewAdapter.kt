@@ -79,11 +79,11 @@ import android.util.Log
            // Load and display profile image
            // ...
            val packageName = bindingItem.root.context.packageName
-           val photox = getPhotoNum(transaction.userId)
-           val photoY = photox.toString()
-          // val resourceId = Resources.getSystem().getIdentifier(photoY, "drawable", packageName)
-         //  Log.i("VH photo", resourceId.toString())
-          // bindingItem.imageItem.setImageResource(resourceId)
+           val photox = getPhotoNum(transaction.toAccountId)
+           val photoY = "photo" + photox.toString()
+           val resourceId = bindingItem.root.context.resources.getIdentifier(photoY, "drawable", packageName)
+           Log.i("VH photo", resourceId.toString())
+           bindingItem.imageItem.setImageResource(resourceId)
            //Picasso.get().load(transaction.imgUrl).into(bindingItem.imageItem)
            // binding.imageItem.setImageDrawable(resourceId)
 //            bindingItem.root.setOnClickListener() {
@@ -94,9 +94,11 @@ import android.util.Log
    }
     fun getPhotoNum(input: Int?): Int {
         require(input in 1000..9999) { "El número debe tener 4 dígitos" }
+        Log.i("getPhotoNum", input.toString())
         if (input != null) {
             val x = input % 7
-            return x
+            Log.i("getPhotoNum X", x.toString())
+            return x+1
         } else {
             return 1
         }

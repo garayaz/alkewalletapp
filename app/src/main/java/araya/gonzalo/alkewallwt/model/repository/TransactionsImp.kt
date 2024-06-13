@@ -1,11 +1,11 @@
 package araya.gonzalo.alkewallwt.model.repository
 
 import android.util.Log
-import android.view.SurfaceControl
+import araya.gonzalo.alkewallwt.model.AccountRequest
 import araya.gonzalo.alkewallwt.model.DataObject
 import araya.gonzalo.alkewallwt.model.TransactionAW
+import araya.gonzalo.alkewallwt.model.TransactionRequest
 import araya.gonzalo.alkewallwt.model.TransactionsResponse
-import araya.gonzalo.alkewallwt.model.network.TransactionsApiClient
 import araya.gonzalo.alkewallwt.model.network.TransactionsService
 import araya.gonzalo.alkewallwt.viewmodel.AlkeWalletApp.Companion.token
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +20,14 @@ class TransactionsImp(private var apiservice: TransactionsService): Transactions
             val response = apiservice.getUserTrans(token=tokenpass) // esta es una funcion lambda por lo
             // que se requiere devolver un valor ACA ESTA el ERROR
 
+            response
+        }
+    }
+
+    override suspend fun fetchTransactionsResponse(): Call<TransactionAW> {
+        return withContext(Dispatchers.IO) {
+            val response = apiservice.addTransaction(TransactionRequest(100, "xxx", "22/01/09", "payment", 123, 1000, 230)) // esta es una funcion lambda por lo
+            // que se requiere devolver un valor
             response
         }
     }
