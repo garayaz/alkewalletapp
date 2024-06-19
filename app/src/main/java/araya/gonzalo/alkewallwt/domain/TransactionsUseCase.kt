@@ -2,6 +2,7 @@ package araya.gonzalo.alkewallwt.domain
 
 import android.util.Log
 import araya.gonzalo.alkewallwt.model.DataObject
+import araya.gonzalo.alkewallwt.model.DepositTransferResponse
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import araya.gonzalo.alkewallwt.model.TransactionsResponse
 import araya.gonzalo.alkewallwt.model.repository.TransactionsImp
@@ -14,7 +15,7 @@ class TransactionsUseCase(private val repository: TransactionsImp) {
         return repository.fetchTransactions()
     }
 
-    suspend fun getAllTransactionResponse(): Call<TransactionAW> {
+    suspend fun getAllTransactionResponse(): DepositTransferResponse {
         Log.i("UseCase", "getAllTransactions")
         return repository.fetchTransactionsResponse()
     }

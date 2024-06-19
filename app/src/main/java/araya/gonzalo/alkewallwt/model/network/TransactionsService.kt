@@ -1,6 +1,8 @@
 package araya.gonzalo.alkewallwt.model.network
 
 import araya.gonzalo.alkewallwt.model.DataObject
+import araya.gonzalo.alkewallwt.model.DepositTransferRequest
+import araya.gonzalo.alkewallwt.model.DepositTransferResponse
 import araya.gonzalo.alkewallwt.model.LoginRequest
 import araya.gonzalo.alkewallwt.model.LoginResponse
 import araya.gonzalo.alkewallwt.model.TransactionAW
@@ -23,6 +25,7 @@ interface TransactionsService {
 
     @POST("transactions")
     suspend fun addTransaction(
-        @Body transaction: TransactionRequest
-    ): Call<TransactionAW>
+        @Header("Authorization") token: String,
+        @Body transaction: DepositTransferRequest
+    ): DepositTransferResponse
 }

@@ -1,6 +1,7 @@
 package araya.gonzalo.alkewallwt.viewmodel
 
 import android.app.Application
+import araya.gonzalo.alkewallwt.model.AccountResponse
 import araya.gonzalo.alkewallwt.model.User
 
 
@@ -10,6 +11,9 @@ class AlkeWalletApp : Application() {
     companion object {
         // se crea un objeto usuario que va a estar global al proyecto
         var loggedUser: User? = null
+
+        // variable que almacena los datos de la cuenta creada
+        var awAccount: AccountResponse? = null
 
         // se crea un string para almacenar el token
         var token: String? = ""

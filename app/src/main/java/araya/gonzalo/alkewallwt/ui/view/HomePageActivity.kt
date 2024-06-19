@@ -110,6 +110,7 @@ class HomePageActivity : AppCompatActivity() {
         val botonverde = binding.hpButtonVerde
         botonverde.setOnClickListener()
         {
+            Log.i("TOKEN antes de boton verde", tokenpass)
             val abrirPantallaSM = Intent(baseContext, SendMoneyActivity::class.java)
             startActivity(abrirPantallaSM)
         }

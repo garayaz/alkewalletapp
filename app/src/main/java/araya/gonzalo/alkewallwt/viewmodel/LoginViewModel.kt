@@ -106,6 +106,7 @@ class LoginViewModel : ViewModel() {
                             val usuarioLogin = response.body()
                             usuarioLiveData.postValue(usuarioLogin)
                             Log.i("USUARIO", "onResponse: ${usuarioLogin?.id}")
+                            // guardar userid antes de entrar a creacion de nueva cuenta
                             if (fromRegister){
                                 newAccountAW(LocalDateTime.now().toString(), 1000000, false, usuarioLogin!!.id)
                             }

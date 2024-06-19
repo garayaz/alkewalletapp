@@ -9,6 +9,7 @@ import araya.gonzalo.alkewallwt.databinding.TransactionsItemBinding
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import android.content.res.Resources
 import android.util.Log
+import araya.gonzalo.alkewallwt.utils.toReadableDate
 
 // El adapter se usa para cargar los datos en la vista, en este caso a la TransactionsItemBinding,
 // que es el reciclerView
@@ -60,7 +61,7 @@ import android.util.Log
            bindingItem.nameItem.text = transaction.toAccountId.toString()
            Log.i("VH userId", transaction.toAccountId.toString())
            //      bindingItem.nameItem.text = transaction.userName
-           bindingItem.dateItem.text = transaction.date
+           bindingItem.dateItem.text = transaction.date!!.toReadableDate()
            val qtt = transaction.amount.toString()
            val formattedString = qtt.reversed().chunked(3).joinToString(".").reversed()
            var raya = " $"

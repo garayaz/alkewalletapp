@@ -3,6 +3,8 @@ package araya.gonzalo.alkewallwt.model.repository
 import android.util.Log
 import araya.gonzalo.alkewallwt.model.AccountRequest
 import araya.gonzalo.alkewallwt.model.DataObject
+import araya.gonzalo.alkewallwt.model.DepositTransferRequest
+import araya.gonzalo.alkewallwt.model.DepositTransferResponse
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import araya.gonzalo.alkewallwt.model.TransactionRequest
 import araya.gonzalo.alkewallwt.model.TransactionsResponse
@@ -12,23 +14,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
 
-class TransactionsImp(private var apiservice: TransactionsService): TransactionsRepository {
+class TransactionsImp(private var apiservice: TransactionsService) : TransactionsRepository {
     val tokenpass = "Bearer $token"
     override suspend fun fetchTransactions(): DataObject {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             Log.i("IMP - fetchTransactions token:", tokenpass.toString())
-            val response = apiservice.getUserTrans(token=tokenpass) // esta es una funcion lambda por lo
+            val response =
+                apiservice.getUserTrans(token = tokenpass) // esta es una funcion lambda por lo
             // que se requiere devolver un valor ACA ESTA el ERROR
 
             response
         }
     }
 
-    override suspend fun fetchTransactionsResponse(): Call<TransactionAW> {
+    override suspend fun fetchTransactionsResponse(): DepositTransferResponse {
         return withContext(Dispatchers.IO) {
-            val response = apiservice.addTransaction(TransactionRequest(100, "xxx", "22/01/09", "payment", 123, 1000, 230)) // esta es una funcion lambda por lo
+            apiservice.addTransaction(
+                token = tokenpass,
+                DepositTransferRequest(100, "xxx",
+                    "22/01/09", "payment", 2172,
+                    3295, 2172)
+            ) // esta es una funcion lambda por lo
             // que se requiere devolver un valor
-            response
         }
     }
     /**    val tokenpass = "Bearer $token"
