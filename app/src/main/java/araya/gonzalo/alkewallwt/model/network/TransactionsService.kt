@@ -2,13 +2,7 @@ package araya.gonzalo.alkewallwt.model.network
 
 import araya.gonzalo.alkewallwt.model.DataObject
 import araya.gonzalo.alkewallwt.model.DepositTransferRequest
-import araya.gonzalo.alkewallwt.model.DepositTransferResponse
-import araya.gonzalo.alkewallwt.model.LoginRequest
-import araya.gonzalo.alkewallwt.model.LoginResponse
-import araya.gonzalo.alkewallwt.model.TransactionAW
-import araya.gonzalo.alkewallwt.model.TransactionRequest
-import araya.gonzalo.alkewallwt.model.TransactionsResponse
-import araya.gonzalo.alkewallwt.model.User
+import araya.gonzalo.alkewallwt.model.DepositTransferResponseResp
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -24,8 +18,8 @@ interface TransactionsService {
     ): DataObject
 
     @POST("transactions")
-    suspend fun addTransaction(
+   fun addTransaction(
         @Header("Authorization") token: String,
         @Body transaction: DepositTransferRequest
-    ): DepositTransferResponse
+    ): Call<DepositTransferResponseResp>
 }

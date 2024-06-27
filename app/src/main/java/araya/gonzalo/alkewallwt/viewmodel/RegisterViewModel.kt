@@ -1,7 +1,9 @@
 package araya.gonzalo.alkewallwt.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import araya.gonzalo.alkewallwt.domain.TransactionsUseCase
 import araya.gonzalo.alkewallwt.model.RegisterRequest
 import araya.gonzalo.alkewallwt.model.RegisterResponse
 import araya.gonzalo.alkewallwt.model.User
@@ -44,13 +46,13 @@ class RegisterViewModel : ViewModel() {
                             response: Response<RegisterResponse>
                         ) {
                             if (response.isSuccessful) {
+                                //useCase.saveUserOnDB(response) //se guarda en la base de datos
                                 RegistrationValid.postValue(true)
                                 fromRegisterResultLiveData.postValue(true)
                             } else {
                                 RegistrationValid.postValue(false)
                                 fromRegisterResultLiveData.postValue(false)
                             }
-// ACA fqlta algo ver parentesis
                         }
 
                         override fun onFailure(p0: Call<RegisterResponse>, p1: Throwable) {

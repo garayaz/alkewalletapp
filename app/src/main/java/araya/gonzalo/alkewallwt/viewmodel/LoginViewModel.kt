@@ -71,7 +71,6 @@ class LoginViewModel : ViewModel() {
                                 tokenResultLiveData.postValue(null)
                                 errorResultLiveData.postValue(resp?.error)
                             }
-
                         } else {
                             val errorResp: LoginResponse? = response.body()
                             tokenResultLiveData.postValue(null)
@@ -82,8 +81,6 @@ class LoginViewModel : ViewModel() {
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                         tokenResultLiveData.postValue(null)
                     }
-
-
                 })
             } catch (e: Exception) {
                 //aqui si hay un error se ejecuta este codigo
@@ -105,10 +102,9 @@ class LoginViewModel : ViewModel() {
                         if (response.isSuccessful){
                             val usuarioLogin = response.body()
                             usuarioLiveData.postValue(usuarioLogin)
-                            Log.i("USUARIO", "onResponse: ${usuarioLogin?.id}")
                             // guardar userid antes de entrar a creacion de nueva cuenta
                             if (fromRegister){
-                                newAccountAW(LocalDateTime.now().toString(), 1000000, false, usuarioLogin!!.id)
+                                newAccountAW(LocalDateTime.now().toString(), 100000, false, usuarioLogin!!.id)
                             }
                         }else{
                             usuarioLiveData.postValue(null)
@@ -129,9 +125,7 @@ class LoginViewModel : ViewModel() {
                          money : Int,
                          isBlocked : Boolean,
                          userId : Int) {
-    //    CoroutineScope(Dispatchers.IO).launch {
             try {
-                Log.i("CUENTA CREADA", "UserID: ${userId}")
                 val newAccountValid = MutableLiveData<Boolean>()
                 val tokenpass = "Bearer ${AlkeWalletApp.token}"
                 val createAccount = RetrofitClass.retrofitobj.create(AlkeWalletAccountService::class.java)
@@ -143,7 +137,6 @@ class LoginViewModel : ViewModel() {
                     override fun onResponse(call: Call<AccountResponse>, response: Response<AccountResponse>) {
                         if (response.isSuccessful) {
                             AlkeWalletApp.createdAwAccount = response.body()?.id
-                            Log.i("CUENTA CREADA", "onResponse: ${response.body()?.id}")
                             newAccountValid.postValue(true)
                         } else {
                             newAccountValid.postValue(false)

@@ -25,6 +25,9 @@ class AlkeWalletApp : Application() {
     // despues del signup
         var fromRegister : Boolean = false
 
+        // se almacena monto diponible en la Wallet
+        var awBalance: Double? = null
+
     }
 
     override fun onCreate() {

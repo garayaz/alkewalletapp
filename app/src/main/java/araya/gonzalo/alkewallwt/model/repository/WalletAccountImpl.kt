@@ -14,7 +14,6 @@ class WalletAccountImpl(private var apiservice: AlkeWalletAccountService) :
     override suspend fun fetchAwAccounts(): Call<AccountResponse> {
         val tokenpass = "Bearer ${AlkeWalletApp.token}"
         return withContext(Dispatchers.IO) {
-            Log.i("Wallet - fetchTransactions token:", tokenpass.toString())
             val response = apiservice.newWalletAccount(tokenpass, AccountRequest("12/04/2024", 10000, false, 100)) // esta es una funcion lambda por lo
             // que se requiere devolver un valor
             response

@@ -19,28 +19,11 @@ class SplashScreenActivity : AppCompatActivity() {
         // tiene acceso a los elementos de la vista splashscreenactivity.xml
         binding = SplashscreenactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        /**
-        /* Abiendo la pantalla con un click */
-
-        //Se declara la imagen como una variable
-        val logoApp = findViewById<ImageView>(R.id.logoApp)
-        logoApp.setOnClickListener {
-            val abrirPantallaLogin = Intent(baseContext, LoginSignupPageActivity::class.java)
-            abrirPantallaLogin.putExtra("nombre", "Gonzalo")
-            abrirPantallaLogin.putExtra("apellido", "Araya")
-            abrirPantallaLogin.putExtra("acepto_tyC", false)
-            startActivity(abrirPantallaLogin)
-        }
-         * Abiendo la pantalla con un timer: se muestra esta actividad por 3 segundo y se
-         * pasa a la siguiente actividad LoginSignupPageActivity*/
 
         var task: TimerTask? = object : TimerTask() {
             override fun run() {
                 // Intent indica que se tratara de abrir l vista LoginSignupPageActivity
                 val abrirPantallaLogin = Intent(baseContext, LoginSignupPageActivity::class.java)
-              //  abrirPantallaLogin.putExtra("nombre", "Gonzalo")
-              //  abrirPantallaLogin.putExtra("apellido", "Araya")
-              //  abrirPantallaLogin.putExtra("acepto_tyC", false)
                 // se inicia la actividad, es decir se abre la vista en el dispositivo.
                 startActivity(abrirPantallaLogin)
               //  finish()

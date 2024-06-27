@@ -19,3 +19,4 @@ sealed class DepositTransferResponse {
         val status: Int
     ) : DepositTransferResponse()
 }
+

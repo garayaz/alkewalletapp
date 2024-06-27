@@ -9,14 +9,15 @@ import araya.gonzalo.alkewallwt.databinding.TransactionsItemBinding
 import araya.gonzalo.alkewallwt.model.TransactionAW
 import android.content.res.Resources
 import android.util.Log
+import araya.gonzalo.alkewallwt.model.local.entity.Transaction
 import araya.gonzalo.alkewallwt.utils.toReadableDate
 
 // El adapter se usa para cargar los datos en la vista, en este caso a la TransactionsItemBinding,
 // que es el reciclerView
  class TransactionsViewAdapter :
     RecyclerView.Adapter<TransactionsViewAdapter.TransactionViewHolder>() {
-    lateinit var onItemClickistener: (TransactionAW) -> Unit
-    var transactions = mutableListOf<TransactionAW>()
+    lateinit var onItemClickistener: (Transaction) -> Unit
+    var transactions = mutableListOf<Transaction>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -41,7 +42,7 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
         holder: TransactionViewHolder,
         position: Int
     ) {
-        val transaction: TransactionAW = transactions[position]
+        val transaction: Transaction = transactions[position]
         // se llama la funcion bind del viewHolder y se le pasa la transaccion(datos)
         holder.bind(transaction)
 
@@ -57,15 +58,12 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
         private val bindingItem:
         TransactionsItemBinding
     ) : RecyclerView.ViewHolder(bindingItem.root) {
-       fun bind(transaction: TransactionAW) {
-           bindingItem.nameItem.text = transaction.toAccountId.toString()
-           Log.i("VH userId", transaction.toAccountId.toString())
-           //      bindingItem.nameItem.text = transaction.userName
+       fun bind(transaction: Transaction) {
+           bindingItem.nameItem.text = transaction.concept.toString()
            bindingItem.dateItem.text = transaction.date!!.toReadableDate()
            val qtt = transaction.amount.toString()
            val formattedString = qtt.reversed().chunked(3).joinToString(".").reversed()
            var raya = " $"
-           Log.i("VH type", transaction.type.toString())
            if (transaction.type == "topup") {
                bindingItem.arrowItem.setImageResource(R.drawable.deposit2_icon)
            } else {
@@ -85,14 +83,8 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
            val resourceId = bindingItem.root.context.resources.getIdentifier(photoY, "drawable", packageName)
            Log.i("VH photo", resourceId.toString())
            bindingItem.imageItem.setImageResource(resourceId)
-           //Picasso.get().load(transaction.imgUrl).into(bindingItem.imageItem)
-           // binding.imageItem.setImageDrawable(resourceId)
-//            bindingItem.root.setOnClickListener() {
-//                onItemClickistener(transaction)
-//            }
        }
-
-   }
+    }
     fun getPhotoNum(input: Int?): Int {
         require(input in 1000..9999) { "El número debe tener 4 dígitos" }
         Log.i("getPhotoNum", input.toString())
@@ -103,23 +95,8 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
         } else {
             return 1
         }
-
     }
-
-    // Load and display profile image
-    // ...
-
 }
-//   binding.txtId.text = transaction.id.toString()
-
-//   binding.txtNombre.text = transaction.nombre
-// se indica que toda la fila sera clickeable, si se ubiese deseado que la flecha fuera clickeable
-// se hubiera definido binding.arrow.setOnClickListener.  Con esto el adaptador escucha el click,
-// luego se debe ir a la actividad para que escuche el click (MainActiviry)
-//   binding.root.setOnClickListener(){
-//  binding.arrow.setOnClickListener() {
-//    onItemClickistener(transaction)
-//} */
 
 
 
