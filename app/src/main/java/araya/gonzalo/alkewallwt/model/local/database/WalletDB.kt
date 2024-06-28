@@ -9,6 +9,7 @@ import araya.gonzalo.alkewallwt.model.local.dao.TransactionsDao
 import araya.gonzalo.alkewallwt.model.local.entity.Transaction
 import araya.gonzalo.alkewallwt.model.local.entity.User
 
+// Definicion de la base de datos ROOM
 @Database(entities = [Transaction::class, User::class], version = 1,
 exportSchema = false
 )

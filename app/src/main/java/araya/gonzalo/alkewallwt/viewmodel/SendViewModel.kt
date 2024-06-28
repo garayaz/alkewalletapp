@@ -1,7 +1,6 @@
 package araya.gonzalo.alkewallwt.viewmodel
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,15 +40,15 @@ class SendViewModel(private val useCase: TransactionsUseCase) : ViewModel() {
                 val depositTransferRequest = DepositTransferRequest(
                     amount = amount,
                     concept = concept,
-                    date = now().toString(), // Function to get formatted date string
+                    date = now().toString(), // Funcion para formatear la fecha
                     type = type,
                     accountId = account,
                     userId = user,
-                    toAccountId = account // Assuming 'toAccountId' is the same as 'account'
+                    toAccountId = account
                 )
                 val createRequest = RetrofitClass.retrofitobj.create(TransactionsService::class.java)
                 val createTrans = createRequest.addTransaction(token, depositTransferRequest)
-                //Ahora se llama a la API para hacer el registro
+                //Ahora se llama a la API para hacer el registro,
                 createTrans.enqueue(object : Callback<DepositTransferResponseResp> {
                     override fun onResponse(
                         call: Call<DepositTransferResponseResp>,

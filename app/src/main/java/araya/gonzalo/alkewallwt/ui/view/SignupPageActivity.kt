@@ -4,20 +4,12 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
-import araya.gonzalo.alkewallwt.R
 import araya.gonzalo.alkewallwt.databinding.ActivitySignupPageBinding
-import araya.gonzalo.alkewallwt.model.AccountRequest
-import araya.gonzalo.alkewallwt.model.User
-import araya.gonzalo.alkewallwt.viewmodel.AlkeWalletApp
 import araya.gonzalo.alkewallwt.viewmodel.AlkeWalletApp.Companion.fromRegister
-import araya.gonzalo.alkewallwt.viewmodel.NewAccountViewModel
 import araya.gonzalo.alkewallwt.viewmodel.RegisterViewModel
-import java.time.LocalDateTime
 
 class SignupPage : AppCompatActivity() {
 

@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+
+// Se define la clase Transaction como una entidad de Room (tabla en la base de datos
 @Entity(tableName = "Transactions_table")
 data class Transaction(
     @PrimaryKey

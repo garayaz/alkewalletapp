@@ -31,9 +31,9 @@ import java.time.LocalDateTime
  */
 class LoginViewModel : ViewModel() {
     // este viewModel deberia conectarse a una api para hacer el login, enviando
-    // el email y la contrasena
-    //Variable LiveData que va a informar a la vista el login, entrega un resultado booleano
-    // val loginResultLiveData = MutableLiveData<Boolean>()
+    // el email y la contrasena como parametros
+    //Variables MutableLiveData que van a informar a la vista el login, lo que ocurre en la
+    //
     val tokenResultLiveData = MutableLiveData<String?>() // almacena el token devuelto por la API
     val errorResultLiveData = MutableLiveData<String?>() // almacena el error devuelto por la API
     val usuarioLiveData = MutableLiveData<User?>() // almacena el usuario logueado
@@ -48,12 +48,9 @@ class LoginViewModel : ViewModel() {
                 // esta es la instancia de retrofit que vamos a usar para hacer el login
                 val login: LoginService = RetrofitClass.retrofitobj.create(LoginService::class.java)
                 // se crea una variable con lo que va a responder la API, callingAPI del tipo Call
-                // eso es lo que responder segun esta definido en la API
+                // eso es lo que responde segun esta definido en la API
                 var callingApi: Call<LoginResponse> =
-                login.doLogin(
-                    // LoginRequest es el modelo que vamos a enviar a la API
-                    LoginRequest(email, contrasena)
-                )
+                login.doLogin(LoginRequest(email, contrasena))
                 //aca hacemos la llamada al servicio y le pasamos el callback para obtener la
                 // respuesta de la API, que me puede devolver un ok "onResponse" o un
                 // error "onFailure"
@@ -102,7 +99,7 @@ class LoginViewModel : ViewModel() {
                         if (response.isSuccessful){
                             val usuarioLogin = response.body()
                             usuarioLiveData.postValue(usuarioLogin)
-                            // guardar userid antes de entrar a creacion de nueva cuenta
+                            // Si el usuario viene de registrarse, se le crea la cuenta wallet
                             if (fromRegister){
                                 newAccountAW(LocalDateTime.now().toString(), 100000, false, usuarioLogin!!.id)
                             }

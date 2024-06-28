@@ -16,7 +16,6 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
 // que es el reciclerView
  class TransactionsViewAdapter :
     RecyclerView.Adapter<TransactionsViewAdapter.TransactionViewHolder>() {
-    lateinit var onItemClickistener: (Transaction) -> Unit
     var transactions = mutableListOf<Transaction>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
@@ -37,7 +36,7 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
 
     }
 
-    // el bind permite cargar los datos en la vista
+    // el bind permite cargar los datos (registros) en la vista, uno a uno
     override fun onBindViewHolder(
         holder: TransactionViewHolder,
         position: Int
@@ -47,7 +46,7 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
         holder.bind(transaction)
 
     }
-
+// devuelve el tamaño de la lista (numero de registros)
     override fun getItemCount(): Int {
         return transactions.size
     }
@@ -70,7 +69,6 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
                bindingItem.arrowItem.setImageResource(R.drawable.payment_icon)
                raya = "-$"
            }
-           Log.i("VH amount", transaction.amount.toString())
            bindingItem.amountItem.text = buildString {
                append(raya)
                append(formattedString)
@@ -81,16 +79,15 @@ import araya.gonzalo.alkewallwt.utils.toReadableDate
            val photox = getPhotoNum(transaction.toAccountId)
            val photoY = "photo" + photox.toString()
            val resourceId = bindingItem.root.context.resources.getIdentifier(photoY, "drawable", packageName)
-           Log.i("VH photo", resourceId.toString())
            bindingItem.imageItem.setImageResource(resourceId)
        }
     }
+
+    // funcion para generar un numero aleatorio del 0 al 5 para usar 6 fotos existentes en drawable
     fun getPhotoNum(input: Int?): Int {
         require(input in 1000..9999) { "El número debe tener 4 dígitos" }
-        Log.i("getPhotoNum", input.toString())
         if (input != null) {
             val x = input % 7
-            Log.i("getPhotoNum X", x.toString())
             return x+1
         } else {
             return 1

@@ -39,22 +39,28 @@ class LoginPage : AppCompatActivity() {
             viewModel.doLogin(correoIngresado, passwordIngresado)
         }
 
-        //Se configura el observador que va a estar observando al sujeto "tokenResultLiveData"
+        //Se configura el observador que va a estar observando al sujeto "tokenResultLiveData", este
+        // puede traer el accessToken o nulo si es que no se logeo correctamente
         viewModel.tokenResultLiveData.observe(this) { tokenOk ->
             if (tokenOk != null) {
-                //Se guardan los datos en la variable global
+                //Se guardan el token en la variable global "token"
                 token = tokenOk
-                // se llama la api que trae los datos del usuario
+                // se llama la api que trae los datos del usuario, si el usuario viene desde el signup
+                // en esta funcion se llama a la funcion que crea la cuenta wallet del usuario
                 viewModel.getUserData()
-//                val irMenuPrincipal = Intent(this, HomePageActivity::class.java)
-//                startActivity(irMenuPrincipal)
+            } else {
+                Toast.makeText(this, "Error al logearse", Toast.LENGTH_SHORT).show()
             }
         }
+        //  el observador "usuarioLiveData", viene  del ViewModel "LoginViewModel" con valor null
+        // si no se logeo correctamente, de lo contrario trae los datos del usuario (objeto)
         viewModel.usuarioLiveData.observe(this) { usuario ->
-            if (usuario != null) {
+            if (usuario != null) {   // si se logeo correctamente llama a la HomePageActivity
                 loggedUser = usuario
                 val irMenuPrincipal = Intent(this, HomePageActivity::class.java)
                 startActivity(irMenuPrincipal)
+            } else {
+                Toast.makeText(this, "Error al logearse", Toast.LENGTH_SHORT).show()
             }
         }
         val signup = binding.lpCrearCuenta

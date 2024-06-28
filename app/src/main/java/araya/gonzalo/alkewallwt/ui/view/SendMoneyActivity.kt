@@ -40,14 +40,24 @@ class SendMoneyActivity : AppCompatActivity() {
         val useCase = TransactionsUseCase(repository)
         val viewModelFactory = ViewModelFactory2(useCase)
         val viewModel = ViewModelProvider(this, viewModelFactory)[SendViewModel::class.java]
+        // Se hace clickeable el boton de envio de dinero por pago
         botonVerde.setOnClickListener {
             val type = "payment"
             val concept = binding.concepto.text.toString()
             val amount = binding.cantidad.text.toString().toLong()
+            // Se llama la funcion para hacer el envio de dinero por pago, se define un numero de
+            // cuenta para poder visualizar el envío en la wallet y se valida si el saldo es suficiente
             if (amount < AlkeWalletApp.awBalance!!) {
                 viewModel.depositarOtransferir(tokenpass, 2172, user, type, concept, amount)
-                val intent = Intent(this, HomePageActivity::class.java)
-                startActivity(intent)
+                // Se valida si el envio fue exitoso
+                viewModel.transactionResult.observe(this) {transactionOk ->
+                    if (transactionOk != false) {
+                        val intent = Intent(this, HomePageActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
             }

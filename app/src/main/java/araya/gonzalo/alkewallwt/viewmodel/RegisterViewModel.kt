@@ -1,6 +1,8 @@
 package araya.gonzalo.alkewallwt.viewmodel
 
 import android.util.Log
+import android.util.Patterns
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import araya.gonzalo.alkewallwt.domain.TransactionsUseCase
@@ -33,44 +35,52 @@ class RegisterViewModel : ViewModel() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 //Llamar a la API
-                if ((firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) && password == repassword) {
-                    //       RegistrationValid.postValue(true)
-                    val createUser = RetrofitClass.retrofitobj.create(NewAccountService::class.java)
-                    val createCall = createUser.createUserAccount(
-                        RegisterRequest(firstName, lastName, email, password, 1, 500)
-                    )
-                    //Ahora se llama a la API para hacer el registro
-                    createCall.enqueue(object : Callback<RegisterResponse> {
-                        override fun onResponse(
-                            call: Call<RegisterResponse>,
-                            response: Response<RegisterResponse>
-                        ) {
-                            if (response.isSuccessful) {
-                                //useCase.saveUserOnDB(response) //se guarda en la base de datos
-                                RegistrationValid.postValue(true)
-                                fromRegisterResultLiveData.postValue(true)
-                            } else {
+                if ((firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty()
+                            && password.isNotEmpty()) && password == repassword) {
+                    if (isValidEmail(email)) {
+                        val createUser = RetrofitClass.retrofitobj.create(NewAccountService::class.java)
+                        val createCall = createUser.createUserAccount(
+                            RegisterRequest(firstName, lastName, email, password, 1, 500)
+                        )
+                        //Ahora se llama a la API para hacer el registro
+                        createCall.enqueue(object : Callback<RegisterResponse> {
+                            override fun onResponse(
+                                call: Call<RegisterResponse>,
+                                response: Response<RegisterResponse>
+                            ) {
+                                if (response.isSuccessful) {
+                                    //useCase.saveUserOnDB(response) //se guarda en la base de datos
+                                    RegistrationValid.postValue(true)
+                                    fromRegisterResultLiveData.postValue(true)
+                                } else {
+                                    RegistrationValid.postValue(false)
+                                    fromRegisterResultLiveData.postValue(false)
+                                }
+                            }
+                            override fun onFailure(p0: Call<RegisterResponse>, p1: Throwable) {
                                 RegistrationValid.postValue(false)
                                 fromRegisterResultLiveData.postValue(false)
                             }
-                        }
-
-                        override fun onFailure(p0: Call<RegisterResponse>, p1: Throwable) {
-                            RegistrationValid.postValue(false)
-                            fromRegisterResultLiveData.postValue(false)
-                        }
-                    })
-                } else {
+                        })
+                    } else {
+                        // Email invalido,
+                        RegistrationValid.postValue(false)
+                        fromRegisterResultLiveData.postValue(false)
+                    }
+                } else { // Algun dato vacio
                     RegistrationValid.postValue(false)
                     fromRegisterResultLiveData.postValue(false)
                 }
-
             } catch (e: Exception) {
                 //aqui si hay un error se ejecuta este codigo
                 RegistrationValid.postValue(false)
                 fromRegisterResultLiveData.postValue(false)
             }
         }
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
 
